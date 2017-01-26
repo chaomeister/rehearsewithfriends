@@ -2,35 +2,45 @@
 {% block title %}Home{% endblock %}
 {% block content %}
 	<!-- Person (Name, location, start time, end time) -->
-	<h1>Rehearse With Friends</h1>
-	<form action="/add" method="post">
-	  Name: <input type="text" name="name"><br>
-	  Location: <input type="text" name="location"><br>
-	  Start Time: <input type="time" name="stime"><br>
-	  End Time: <input type="time" name="etime"><br>
-	  <input type="submit" value="Submit">
+	<body class="background">
+	<div class="bgOver">
+		<h1 class="white-color">Rehearse With Friends</h1>
+		<!-- Add caption "Musicianship includes practicing together. Make it happen here." -->
+		<h3 class="center white-color">Musicianship includes practicing together. Make it happen here.</h3>
+		<div class="transbox">
+		<form class="center" action="/add" method="post">
+		  Name: <input type="text" name="name"><br>
+		  Location: <input type="text" name="location"><br>
+		  Start Time: <input type="time" name="stime"><br>
+		  End Time: <input type="time" name="etime"><br>
+		  <input type="submit" value="Submit">
 
-	</form>
-	{% if error %}
-		<h5 class="error">Error: {{error}}</h5>
-	{% endif %}
+		</form>
 
-	<h3>People Practicing Now</h3>
-	<div class="row">
-		<div class="col-sm-3">Name</div>
-		<div class="col-sm-3">Location</div>
-		<div class="col-sm-3">Start Time</div>
-		<div class="col-sm-3">End time</div>
-	</div><br>
-	
-	{% for person in people %}
+		{% if error %}
+			<h5 class="error center">Error: {{error}}</h5>
+		{% endif %}
+
+		
+		<h3 class="center">People Practicing Now</h3>
 
 		<div class="row">
-			<div class="col-sm-3">{{person.name}}</div>
-			<div class="col-sm-3">{{person.location}}</div>
-			<div class="col-sm-3">{{person.stime}}</div>
-			<div class="col-sm-3">{{person.etime}}</div>
-		</div>   	
-	{% endfor %}
+			<div class="col-sm-3">Name</div>
+			<div class="col-sm-3">Location</div>
+			<div class="col-sm-3">Start Time</div>
+			<div class="col-sm-3">End time</div>
+		</div><br>
+		
+		{% for person in people %}
 
+			<div class="row">
+				<div class="col-sm-3">{{person.name}}</div>
+				<div class="col-sm-3">{{person.location}}</div>
+				<div class="col-sm-3">{{person.stime}}</div>
+				<div class="col-sm-3">{{person.etime}}</div>
+			</div>   	
+		{% endfor %}
+		</div>
+	</div>
+	</body>
 {% endblock %}

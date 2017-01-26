@@ -20,7 +20,7 @@ def add():
 	stime = request.form.get("stime")
 	etime = request.form.get("etime")
 	if name == "" or location == "":
-		return redirect(url_for('.hello', error="Please completely fill out the form"))
+		return redirect(url_for('.hello', error="Please completely fill out the form."))
 	people.insert_one(
 		{
 		"name":name,

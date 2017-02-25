@@ -3,6 +3,7 @@ from pymongo import MongoClient
 import jinja2
 import os
 import datetime
+import pytz
 
 app = Flask(__name__)
 dbclient = MongoClient("mongodb://chao:rehearsewithfriends1@ds049094.mlab.com:49094/rehearsewithfriendsdb")
@@ -19,7 +20,8 @@ def hello():
 
 def deleteFinishedRehearsals():
 	allPeople = people.find()
-	curr_time = datetime.datetime.now().time()
+	timezone = pytz.timezone('America/New_York')
+	curr_time = datetime.datetime.now(timezone).time()
 	for person in allPeople:
 		end_time = datetime.datetime.strptime(person["etime"], "%H:%M").time()
 		if curr_time > end_time:
@@ -33,11 +35,11 @@ def add():
 	etime = request.form.get("etime")
 	if name == "" or location == "":
 		return redirect(url_for('.hello', error="Please completely fill out the form."))
-	# try: 
-	# 	datetime.datetime.strptime(stime, "%H:%M").time()
-	# 	datetime.datetime.strptime(etime, "%H:%M").time()
-	# except ValueError:
-	# 	return redirect(url_for('.hello', error="Please enter correctly formatted times."))
+	try: 
+		datetime.datetime.strptime(stime, "%H:%M").time()
+		datetime.datetime.strptime(etime, "%H:%M").time()
+	except ValueError:
+		return redirect(url_for('.hello', error="Please enter correctly formatted times."))
 	people.insert_one(
 		{
 		"name":name,

@@ -33,11 +33,11 @@ def add():
 	etime = request.form.get("etime")
 	if name == "" or location == "":
 		return redirect(url_for('.hello', error="Please completely fill out the form."))
-	try: 
-		datetime.datetime.strptime(stime, "%H:%M").time()
-		datetime.datetime.strptime(etime, "%H:%M").time()
-	except ValueError:
-		return redirect(url_for('.hello', error="Please enter correctly formatted times."))
+	# try: 
+	# 	datetime.datetime.strptime(stime, "%H:%M").time()
+	# 	datetime.datetime.strptime(etime, "%H:%M").time()
+	# except ValueError:
+	# 	return redirect(url_for('.hello', error="Please enter correctly formatted times."))
 	people.insert_one(
 		{
 		"name":name,

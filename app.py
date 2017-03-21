@@ -6,8 +6,8 @@ import datetime
 import pytz
 
 app = Flask(__name__)
-dbclient = MongoClient("mongodb://chao:rehearsewithfriends1@ds049094.mlab.com:49094/rehearsewithfriendsdb")
-db = dbclient.get_default_database()
+dbclient = MongoClient(os.environ.get('MONGO_URL'))
+db = dbclient.rehearsewithfriendsdb
 people = db.People
 
 
